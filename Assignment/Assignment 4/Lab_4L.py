@@ -8,10 +8,10 @@
 ## PROBLEM : Randomize some slots and then fide if there is a match
 ##
 ## ALGORITHM : 
-##      1. Write out the algorithm
+##      Provided below 
 ## 
 ## ERROR HANDLING:
-##      Any Special Error handling to be noted.  Wager not less than 0. etc
+##      None found. 
 ##
 ## OTHER COMMENTS:
 ##      Any special comments
@@ -38,11 +38,12 @@ def get_wager(bank : int) -> int:
 
     while True: 
         wager = int(input('How many chips do you want to wager? ==> '))
-        if wager <= 0: 
-            print('The wager amount must be greater than 0')
+        if wager < 0: 
+            print('The wager amount must be greater than 0. Please enter again.')
             continue
-        elif wager >= bank:
+        elif wager > bank:
             print('The wager amount cannot be greater than how much you have.')
+            print(bank)
             continue
         elif 0 < wager <= bank: 
             return wager
@@ -60,17 +61,12 @@ def get_slot_results() -> tuple:
 def get_matches(reela, reelb, reelc) -> int:
     ''' Returns 3 for all 3 match, 2 for 2 alike, and 0 for none alike. '''
 
-    myTuple = [reela, reelb, reelc]
-    mySet = set(myTuple)
-
-    size = len(mySet)
-
-    if size == 3:
-        return 0
-    elif size == 2:
+    if reela == reelb and reela == reelc:
+        return 3
+    elif reela == reelb or reelb == reelc or reela == reelc:
         return 2
     else:
-        return 3
+        return 0
 
 
 def get_bank() -> int:
