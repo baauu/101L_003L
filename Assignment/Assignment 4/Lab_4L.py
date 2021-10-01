@@ -5,7 +5,7 @@
 ## Name: Jessi Bautista Espino
 ## Email: jbr75@umsystem.edu
 ##
-## PROBLEM : Describe the problem
+## PROBLEM : Randomize some slots and then fide if there is a match
 ##
 ## ALGORITHM : 
 ##      1. Write out the algorithm
