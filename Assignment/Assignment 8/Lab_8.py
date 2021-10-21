@@ -6,6 +6,7 @@
 ## Program 8
 ##
 ##########################################
+import os
 
 #Opening a file
 def open_file(prompt, mode='r'):
@@ -34,6 +35,7 @@ def get_min_mpg():
             print('You must enter a number for the fuel economy')
     
 #The main program: 
+print(os.getcwd())
 mpg = get_min_mpg()
 print()
 file = open_file('Enter the name of the input vehicle file ==> ')
