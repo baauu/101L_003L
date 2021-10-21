@@ -7,7 +7,7 @@
 ##
 ##########################################
 
-#input vehicle file
+#Opening a file
 def open_file(prompt, mode='r'):
     while True:
         try:
@@ -19,7 +19,7 @@ def open_file(prompt, mode='r'):
         except IOError:
             print('There is an IO Error {}'.format(filename))
 
-#minimum mpg
+#Getting minnimum MPG
 def get_min_mpg():
     while True:
         try:
@@ -33,7 +33,7 @@ def get_min_mpg():
         except ValueError:
             print('You must enter a number for the fuel economy')
     
-#main function 
+#The main program: 
 mpg = get_min_mpg()
 print()
 file = open_file('Enter the name of the input vehicle file ==> ')
