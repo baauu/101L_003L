@@ -6,9 +6,8 @@
 ## Program 8
 ##
 ##########################################
-import os
 
-#Opening a file
+#Function Open_File:
 def open_file(prompt, mode='r'):
     while True:
         try:
@@ -20,7 +19,8 @@ def open_file(prompt, mode='r'):
         except IOError:
             print('There is an IO Error {}'.format(filename))
 
-#Getting minnimum MPG
+
+#Function min_mpg:
 def get_min_mpg():
     while True:
         try:
@@ -34,8 +34,8 @@ def get_min_mpg():
         except ValueError:
             print('You must enter a number for the fuel economy')
     
-#The main program: 
-print(os.getcwd())
+
+#MainProgram:
 mpg = get_min_mpg()
 print()
 file = open_file('Enter the name of the input vehicle file ==> ')
@@ -47,7 +47,7 @@ for line in file:
         values = line.split('\t')
         if float(values[7]) >= mpg:
             out.write('{:<40} {:<40} {:<40} {:>10.3f}\n'.format(values[0],values[1],values[2], float(values[7])))
-    except ValueError :
-        print('mpg value was invalid')
+    except ValueError:
+        print('Could not convert value {} for vehicle {} {} {}'.format(values[7], values[0], values[1], values[2]))
 file.close()
 out.close()
