@@ -152,8 +152,5 @@ if __name__ == "__main__":
         if option == "q" or option == "Q":
             game = False
             break
-"""        else:
-            continue"""
-
 
 
