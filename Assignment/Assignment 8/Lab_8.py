@@ -75,6 +75,7 @@ def display(num):
                 new_test = float(input("Enter the new Test score 0-100 ==> "))
             else:
                 all_test.append(new_test)
+                print("Test has been added")
                 break
 
         elif num == '2':
@@ -84,6 +85,7 @@ def display(num):
                 print("Could not find test score.")
             else:
                 all_test.remove(remove_test)
+                print("Test has been removed")
             break
 
         elif num == '3':
@@ -100,6 +102,7 @@ def display(num):
                 new_assignment = input("Enter the new Assignment score 0-100 ==> ")
             else:
                 all_programs.append(new_assignment)
+                print("Assignment has been added")
             break
 
         elif num == '5':
@@ -109,6 +112,7 @@ def display(num):
                 print("Could not find that score to remove")
             else:
                 all_programs.remove(remove_assign)
+                print("Assignment has been removed")
             break
 
         elif num == '6':
@@ -124,18 +128,20 @@ def display(num):
             print("Type               #       min       max       avg       std")
             print("=" * 60)
             if len(all_test) == 0:
-                print("Tests              {}       {}        {}        {}        {}".format(number_t, not_found, not_found, not_found, not_found))
+                print("Tests              {}       {}       {}       {}       {}".format(number_t, not_found, not_found, not_found, not_found))
             else:
-                print("Tests              {}      {}       {}       {}       {}".format(number_t, finding_min(all_test), finding_max(all_test), finding_average(all_test), standev(all_test)))
+                print("Tests              {}       {}     {}      {}      {}".format(number_t, finding_min(all_test), finding_max(all_test), finding_average(all_test), standev(all_test)))
             
             if len(all_programs) == 0:
-                print("Programs           {}       {}        {}        {}        {}".format(number_p, not_found, not_found, not_found, not_found))
+                print("Programs           {}       {}       {}       {}       {}".format(number_p, not_found, not_found, not_found, not_found))
+                print()
+                print("The weighted scores is       0.00")
             else: 
-                print("Programs           {}      {}       {}       {}       {}".format(number_p, finding_min(all_test), finding_max(all_test), finding_average(all_test), standev(all_programs)))
-            
+                print("Programs           {}       {}     {}      {}      {}".format(number_p, finding_min(all_programs), finding_max(all_programs), finding_average(all_programs), standev(all_programs)))
+                score = weighted(all_test, all_programs)
+                print()
+                print("The weighted scores is       {0:.2f}".format(score))
             print()
-            score = weighted(all_test, all_programs)
-            print("The weighted scores is       {0:.2f}".format(score))
             break
         elif num == "Q" or num == "q":
             break
