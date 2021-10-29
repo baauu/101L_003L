@@ -1,101 +1,123 @@
-########################################################################
-##
+## Jessi Bautista Espino
+## jbr75@umsystem.edu 
 ## CS 101 Lab
-## Program # 6
-## Name: Jessi Bautista Espino
-## Email: jbr75@umsystem.edu
+## Program 6 
 ##
-## PROBLEM : 
-##
-## ALGORITHM : 
-##      Provided below 
-## 
-## ERROR HANDLING:
-##      None found. 
-##
-## OTHER COMMENTS:
-##      Any special comments
-##
-########################################################################
+##PROBLEM: Do Caesar Encryption/Decryption, including cracking a string w/ 
+##  unknown Caesar key. 
+##  
+##Functions needed: 
+##  Encrypt(string_text, int_key): Takes a string and integer key, returns 
+##  the encryption of the string using that key. Note that for Caesar encryption, 
+##  an encryption with key k (k in 1 - 25) is decrypted by doing the same process 
+##  with key 26-k. Returns encrypted string using specified key. 
+##  
+##  Decrypt(string_text, int_key): Decrypts key by calling Encrypt with key 
+##    26-int_key and returning the result. Done this way to make for a cleaner
+##    breakdown of the problem. Returns decrypted string using specified key. 
+##    
+##  Crack(string_text): Decrypts a string by repeatedly calling Decrypt with each 
+##    possible key (1 to 25) and remembering the one with a letter frequency 
+##    closest to English based on counts of E, T, O, A, I, N. Returns tuple: 
+##    decrypted string and decryption key. 
+##    
+##  Get_input(): Interacts with user, gets user choice of '1'-'4' and returns that 
+##  value. If user enters anything else, prints brief error message and tries again. 
+##  
+##  Print_menu(): Prints menu. No user interaction. 
+  
+################################ 
 
-import string
+import string 
 
-def school(num):
-    if num[5] == '1':
-        return 'School of Computing and Engineering SCE'
-    elif num[5] == '2':
-        return 'School of Law'
-    elif num[5] == '3':
-        return 'College of Arts and Sciences'
-    return 'Invalid School'
+#Encryption function ; completed 
+def Encrypt(string_text, int_key):
+    '''Caesar-encrypts string using specified key.'''
+    if string_text.isupper() == True:
+        for letter in string_text: 
+            string_order = ord(letter)
+            shift_number = string_order + int_key
+            if string_order == 32:
+                shift_number -= int_key
+            elif shift_number > 90:
+                shift_number = 64+(shift_number % 122)
+            crypt = chr(shift_number)
+            print(crypt, end = '')
+    if string_text.islower() == True: 
+        for letter in string_text: 
+            string_order = ord(letter)
+            shift_number = string_order + int_key
+            if string_order == 32:
+                shift_number -= int_key
+            elif shift_number > 122: 
+                shift_number = 96 + (shift_number % 122)
+            crypt = chr(shift_number)
+            new_crypt = crypt.upper()
+            print(new_crypt, end = '')
+
+#Decrypted function ; completed 
+def Decrypt(string_text, int_key):
+    ''' Decrypts Caesar-encrypted string with specified key. '''
+    if string_text.islower() == True:
+        for letter in string_text:
+            string_order = ord(letter)
+            shift_number = string_order - int_key
+            if string_order == 32:
+                shift_number += int_key
+            elif shift_number < 65: 
+                shift_number = 91 - (shift_number % 65)
+            crypt = chr(shift_number)
+            new_crypt = crypt.upper()
+            print(new_crypt, end = '')
+
+#Main Menu
+def print_menu():
+    '''Prints menu. No user interaction. '''
+    print('MAIN MENU:')
+    print('1) Encode a string')
+    print('2) Decode a string')
+    print('Q) Quit')
+
+#Input
+def get_input():
+    '''Interacts with user. Returns one of: '1', '2', '3', '4'.'''
+    button = input('Enter your selection ==> ')
+    return button
 
 
-def grade(num):
-    if num[6] == '1':
-        return 'Freshman'
-    elif num[6] == '2':
-        return 'Sophomore'
-    elif num[6] == '3':
-        return 'Junior'
-    elif num[6] == '4':
-        return 'Senior'
-    return 'Invalid Grade'
-
-def character_value(num):
-    if num == '0' or num == ' 1' or num == '2' or num == '3' or num == '4' or num == '5' or num == '6' or num == '7' or num == '8' or num == '9':
-        return int(num)
-    else: 
-        return string.ascii_uppercase.find(num)
-
-def digitcheck(num):
-    sumone = 0
-    for index in range(9):
-        charone = num[index]
-        sumone += character_value(charone) * (index + 1)
-    result = sumone % 10
-    return result
-
-
-def verifydigit(num):
-        if len(num) != 10:
-            return False, 'The length of the number given must be 10'
-        elif num[0].isalpha() == False:
-            return False, 'The first 5 characters must be A-Z, the invalid character is at 0 is ' + num[0]
-        elif num[1].isalpha() == False: 
-            return False, 'The first 5 characters must be A-Z, the invalid characters is at 1 is ' + num[1]
-        elif num[2].isalpha() == False:
-            return False, 'The first 5 characters must be A-Z, the invalid character is at 2 is ' + num[2]
-        elif num[3].isalpha() == False:
-            return False, "The first 5 characters must be A-Z, the invalid character is at 3 is " + num[3]
-        elif num[4].isalpha() == False:
-            return False, "The first 5 characters must be A-Z, the invalid character is at 4 is " + num[4]
-        elif int(num[9]) != digitcheck(num):
-            return False, "Check Digit " + num[9] + " does not match calculated value " + str(digitcheck(num))
-        elif num[5] != '1' and num[5] != '2' and num[5] != '3':
-            return False, "The sixth character must be 1 2 or 3"
-        elif num[6] != '1' and num[6] != '2' and num[6] != '3' and num[6] != '4':
-            return False, "The seventh character must be 1 2 3 or 4"
-        else:
-            return True, ""
-
-if __name__ == "__main__":
-
-    print('{:^60}'.format('Linda Hall'))
-    print('{:^60}'.format('Library Card Check'))
-    print('='*60)
-
-    while True:
-
-        print()
-        num = input('Enter Library Card. Hit Enter to Exit ==> ').upper().strip()
-        if num == "": 
+    
+#Main program
+def main(option):
+    turn = True
+    while turn == True:
+        if option == '1':
+            message = input('Enter (brief) text to encrypt: ')
+            shift = int(input('Enter the number to shift letters by: '))
+            print('Encrypted: ')
+            Encrypt(message, shift)
+            print()
+            print()
             break
-        result, error = verifydigit(num)
-        if result == True: 
-            print('Library card is valid.')
-            print('The card belongs to a student in {}'.format(school(num)))
-            print('The card belongs to a {}'.format(grade(num)))
-        else:
-            print('Library card is invalid')
-            print(error)
+        elif option == '2':
+            message = input('Enter (brief) text to encrypt: ')
+            shift = int(input('Enter the number to shift letters by: '))
+            print('Decrypted: ')
+            Decrypt(message, shift)
+            print()
+            print()
+            break
+        elif option == 'Q':
+            turn = False
+            break
+    
+#Program 
+game = True
+while game == True:
+    print_menu()
+    selection = get_input()
+    if selection == 'Q':
+        game = False
+        break
+    main(selection)
+    print()
 
