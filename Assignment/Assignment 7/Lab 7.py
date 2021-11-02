@@ -10,15 +10,20 @@
 #Min MPG
 def min_MPG():
     try:
-        user_input = float(input("Enter the minimum mpg ==> "))    
-        while user_input < 0 and user_input > 100:
-            if user_input < 0: 
-                print("Fuel economy given must be greater than 0")
-            elif user_input > 100:
-                print("Fuel economy must be less than 100")
-            else:
-                user_input = float(input("Enter the minimum mpg ==> ")) 
-        return user_input
+        game = True
+        while game == True:
+          user_input = int(input("Enter the minimum mpg ==> "))
+          if user_input < 0: 
+              print("Fuel economy given must be greater than 0")
+              user_input = int(input("Enter the minimum mpg ==> "))
+              raise ValueError
+          elif user_input > 100:
+              print("Fuel economy must be less than 100")
+              user_input = int(input("Enter the minimum mpg ==> "))
+          else:
+              game = False
+              break
+          return user_input
     except ValueError:
         print("You must enter a number for the fuel economy")
         user_input = float(input("Enter the minimum mpg ==> "))    
