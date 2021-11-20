@@ -12,7 +12,7 @@ class clock:
         self.hr = hour
         self.min = minu
         self.sec = sec
-        self.clock_type = clock_type
+        self.clock_type = 1
         
     def tick(self):
         self.sec += 1
@@ -41,12 +41,12 @@ class clock:
 
 
 if __name__ == "__main__":
-    hour = int(input("Enter hour: "))
-    minute = int(input("Enter minutes: "))
-    second = int(input("Enter Seconds: "))
-    c_type = int(input("24hr clock = 0, AM/PM = 1: "))
+    hour = int(input("What is the current hour ==>  "))
+    minute = int(input("What is the current minute ==>  "))
+    second = int(input("What is the current second ==>  "))
+    '''c_type = int(input("24hr clock = 0, AM/PM = 1: "))'''
 
-    output = clock(hour, minute, second, c_type)
+    output = clock(hour, minute, second) #c_type variable not included just here for checking it worked
     '''print(output)'''
 
     while True:
