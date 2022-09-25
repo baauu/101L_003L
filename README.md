@@ -1,5 +1,3 @@
 # 101L_003L
 
-Name: Jessi Bautista Espino
-Contact: jbr75@umsystem.edu
-Designation: Student
+Created in 2021 for my first programming course in Python. Assignments contains a list of 13 projects. Each project progresses in complexity but still beginner friendly. 
